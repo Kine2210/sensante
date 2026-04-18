@@ -6,6 +6,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold text-teal-700 mb-6">
         SénSanté
       </h1>
+
       <h2 className="text-xl font-semibold text-gray-700 mb-4">
         Patients
       </h2>
