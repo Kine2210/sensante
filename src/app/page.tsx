@@ -8,36 +8,15 @@ export default function Home() {
         SénSanté
       </h1>
 
-      <h2 className="text-xl font-semibold mb-4">
-        Membres du groupe
+      <h2 className="text-xl font-semibold text-gray-700 mb-4">
+        Patients
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-        <PatientCard
-          nom="Fatou Kine Camara"
-          fonction="Architecte"
-          groupe={1}
-        />
-
-        <PatientCard
-          nom="Hamadouu Abdoulaye"
-          fonction="Gardien"
-          groupe={1}
-        />
-
-        <PatientCard
-          nom="Lissa Boubacar Niang"
-          fonction="Médecin"
-          groupe={1}
-        />
-
+        <PatientCard nom="Aminata Sow" region="Dakar" age={34} />
+        <PatientCard nom="Ibrahima Ba" region="Thiès" age={45} />
+        <PatientCard nom="Awa Diallo" region="Saint-Louis" age={28} />
       </div>
-
-      <p className="text-xs text-gray-400 italic mt-8">
-        Ceci n'est pas un outil médical.
-      </p>
-
     </main>
   );
 }
