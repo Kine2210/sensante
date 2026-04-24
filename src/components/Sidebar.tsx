@@ -7,6 +7,7 @@ const liens = [
   { nom: "Patients", href: "/patients", icone: "P" },
   { nom: "Consultations", href: "/consultations", icone: "C" },
   { nom: "Dashboard", href: "/dashboard", icone: "D" },
+  { nom: "Assistant IA", href: "/ia", icone: "I" },
   { nom: "Profil", href: "/profil", icone: "U" },
 ];
 
