@@ -1,3 +1,5 @@
+// Page d'accueil - assemblée par L'Architecte
+
 import PatientCard from "@/components/PatientCard";
 import ConsultationCard from "@/components/ConsultationCard";
 import AlerteIA from "@/components/AlerteIA";

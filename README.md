@@ -1,22 +1,10 @@
-# SénSanté
 
-Assistant de santé communautaire avec IA.
+# exercice-git-equipe
+Projet Sensante GLSIA-ESP1 2026
+Bienvenue dans mon premier dépôt Git !
 
-## Stack technique
-- Next.js 14 (App Router)
-- Tailwind CSS
-- Prisma + PostgreSQL
-- Groq API (Llama 3)
-- NextAuth.js
-- Docker Compose
+## Objectif
+Apprendre Git pas à pas.
 
-## Installation
-```bash
-npm install
-cp .env.example .env
-npx prisma db push
-npm run dev
-```
-
-## Équipe
-Licence 3 GLSI - ESP/UCAD - 2025-2026
+## Auteur
+Babacar Seck-L3 GLSI
