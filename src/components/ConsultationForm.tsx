@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 
 interface Patient {
@@ -16,7 +17,11 @@ const SYMPTOMES_DISPONIBLES = [
   "Essoufflement", "Vertiges",
 ];
 
-export default function ConsultationForm({ onSuccess }: { onSuccess: () => void }) {
+export default function ConsultationForm({
+  onSuccess,
+}: {
+  onSuccess: () => void;
+}) {
   const [patients, setPatients] = useState<Patient[]>([]);
   const [symptomes, setSymptomes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -29,11 +34,15 @@ export default function ConsultationForm({ onSuccess }: { onSuccess: () => void 
 
   function toggleSymptome(s: string) {
     setSymptomes((prev) =>
-      prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]
+      prev.includes(s)
+        ? prev.filter((x) => x !== s)
+        : [...prev, s]
     );
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>
+  ) {
     e.preventDefault();
     if (symptomes.length === 0) {
       alert("Cochez au moins un symptôme.");
@@ -50,21 +59,27 @@ export default function ConsultationForm({ onSuccess }: { onSuccess: () => void 
         notes: formData.get("notes"),
       }),
     });
-   if (res.ok) {
-  setSymptomes([]);
-  (e.target as HTMLFormElement).reset();
-  onSuccess();
-}
+    if (res.ok) {
+      setSymptomes([]);
+      e.currentTarget.reset();
+      onSuccess();
+    }
     setLoading(false);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-6 space-y-6">
-      <h3 className="text-lg font-bold text-gray-800">Nouvelle consultation</h3>
+    <form onSubmit={handleSubmit}
+      className="bg-white rounded-lg shadow-md p-6 space-y-6">
+      <h3 className="text-lg font-bold text-gray-800">
+        Nouvelle consultation
+      </h3>
 
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Patient</label>
-        <select name="patientId" required className="w-full p-3 border rounded-lg">
+        <label className="block text-sm font-semibold text-gray-700 mb-2">
+          Patient
+        </label>
+        <select name="patientId" required
+          className="w-full p-3 border rounded-lg">
           <option value="">Sélectionner un patient</option>
           {patients.map((p) => (
             <option key={p.id} value={p.id}>
@@ -80,15 +95,15 @@ export default function ConsultationForm({ onSuccess }: { onSuccess: () => void 
         </label>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {SYMPTOMES_DISPONIBLES.map((s) => (
-            <label key={s} className={`flex items-center gap-2 p-2 rounded-lg border cursor-pointer transition ${
-              symptomes.includes(s) ? "bg-orange-50 border-orange-400" : "hover:bg-gray-50"
-            }`}>
-              <input
-                type="checkbox"
+            <label key={s}
+              className={`flex items-center gap-2 p-2 rounded-lg border cursor-pointer transition
+                ${symptomes.includes(s)
+                  ? "bg-orange-50 border-orange-400"
+                  : "hover:bg-gray-50"}`}>
+              <input type="checkbox"
                 checked={symptomes.includes(s)}
                 onChange={() => toggleSymptome(s)}
-                className="accent-orange-500"
-              />
+                className="accent-orange-500" />
               <span className="text-sm">{s}</span>
             </label>
           ))}
@@ -96,13 +111,12 @@ export default function ConsultationForm({ onSuccess }: { onSuccess: () => void 
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Notes (optionnel)</label>
-        <textarea
-          name="notes"
-          rows={3}
+        <label className="block text-sm font-semibold text-gray-700 mb-2">
+          Notes (optionnel)
+        </label>
+        <textarea name="notes" rows={3}
           placeholder="Observations cliniques..."
-          className="w-full p-3 border rounded-lg"
-        />
+          className="w-full p-3 border rounded-lg" />
       </div>
 
       <button type="submit" disabled={loading}
