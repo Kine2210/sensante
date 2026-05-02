@@ -1,3 +1,4 @@
+// NextAuth sera configuré dans le Lab Auth
 import NextAuth from "next-auth";
 import { authOptions } from "@/lib/auth";
 
