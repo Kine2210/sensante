@@ -27,3 +27,18 @@ Date : Mai 2025
 - Confiance : 45%
 
 
+
+# Tests IA — L'Oracle
+
+## Consultations testées
+
+| Symptômes | Diagnostic IA | Urgence | Confiance |
+|-----------|---------------|---------|-----------|
+| Fièvre, Toux, Fatigue | Suspicion de paludisme | urgent | 78% |
+| Maux de tête, Vertiges | Possible hypertension | moyen | 65% |
+| Diarrhée, Vomissements | Gastro-entérite aiguë | moyen | 72% |
+
+## Observations
+- Le modèle tient compte du contexte sénégalais (paludisme mentionné fréquemment)
+- La température basse (0.3) donne des résultats cohérents et reproductibles
+- Le disclaimer s'affiche systématiquement à chaque résultat IA
