@@ -1,18 +1,16 @@
-FROM node:20-slim
+FROM --platform=linux/amd64 node:20
 
-RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y openssl libssl-dev
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci
+COPY package*.json ./
+
+RUN npm ci --prefer-offline
 
 COPY . .
 
 RUN npx prisma generate
-
-ARG GROQ_API_KEY
-ENV GROQ_API_KEY=$GROQ_API_KEY
 
 RUN npm run build
 
