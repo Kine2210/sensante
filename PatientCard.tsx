@@ -10,9 +10,9 @@ export default function Page() {
         Patients
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <PatientCard nom="Aminata Sow" region="Dakar" age={34} />
-        <PatientCard nom="Ibrahima Ba" region="Thiès" age={45} />
-        <PatientCard nom="Awa Diallo" region="Saint-Louis" age={28} />
+        <PatientCard nom="Aminata Sow" region="Dakar" age={34} sexe="F" />
+        <PatientCard nom="Ibrahima Ba" region="Thiès" age={45} sexe="M" />
+        <PatientCard nom="Awa Diallo" region="Saint-Louis" age={28} sexe="F" />
       </div>
       <p className="text-xs text-gray-400 italic mt-8">
         Ceci n'est pas un outil médical. Consultez un professionnel de santé.
