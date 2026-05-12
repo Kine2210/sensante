@@ -25,7 +25,7 @@ NEXTAUTH_URL=http://localhost:3000
 
 ### Inscription
 
-Va sur http://localhost:3000/register pour créer un compte.
+Va sur http://localhost:3000/register pour la création de compte.
 
 ## Auteur
 Fatou Kine Camara
