@@ -1,22 +1,19 @@
-# Étape de build
-FROM node:18
+FROM --platform=linux/amd64 node:20
 
-# Installer OpenSSL et libssl-dev
 RUN apt-get update && apt-get install -y openssl libssl-dev
 
-# Créer le dossier de l’app
 WORKDIR /app
 
-# Copier les fichiers
 COPY package*.json ./
-RUN npm install
+
+RUN npm ci --prefer-offline
 
 COPY . .
 
-# Compiler Next.js
+RUN npx prisma generate
+
 RUN npm run build
 
-# Exposer le port
 EXPOSE 3000
 
 CMD ["npm", "start"]
