@@ -1,26 +1,21 @@
-# 1. Image de base
-FROM node:20-alpine
+FROM node:20-slim
 
-# 2. Répertoire de travail
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# 3. Copier les fichiers de dépendances
 COPY package.json package-lock.json ./
-
-# 4. Installer les dépendances
 RUN npm ci
 
-# 5. Copier le code source
 COPY . .
 
-# 6. Générer le client Prisma
 RUN npx prisma generate
 
-# 7. Compiler Next.js
+ARG GROQ_API_KEY
+ENV GROQ_API_KEY=$GROQ_API_KEY
+
 RUN npm run build
 
-# 8. Port
 EXPOSE 3000
 
-# 9. Démarrage
 CMD ["npm", "start"]
