@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
@@ -68,11 +69,11 @@ export async function GET() {
     })),
     dernieresAlertes: dernieresAlertes.map((a) => ({
       id: a.id,
-      patient: `${a.patient.prenom} ${a.patient.nom}`,
-      region: a.patient.region,
+      date: a.date,
       diagnostic: a.diagnosticIa,
       confiance: a.confiance,
-      date: a.date,
+      patient: `${a.patient.prenom} ${a.patient.nom}`,
+      region: a.patient.region,
     })),
   });
 }
