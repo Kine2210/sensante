@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { NextResponse } from "next/server";
 
 // GET /api/consultations
-export async function GET() {
+export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json(
@@ -13,7 +13,11 @@ export async function GET() {
     );
   }
 
+  const { searchParams } = new URL(request.url);
+  const patientId = searchParams.get("patientId");
+
   const consultations = await prisma.consultation.findMany({
+    where: patientId ? { patientId: parseInt(patientId) } : undefined,
     include: {
       patient: true,
       user: {
