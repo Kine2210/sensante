@@ -1,9 +1,5 @@
 import Groq from "groq-sdk";
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
-
 const SYSTEM_PROMPT = `Tu es un assistant médical pour le Sénégal. Tu analyses les symptômes signalés par un agent de santé communautaire et tu proposes un pré-diagnostic.
 Règles :
 - Tu donnes un niveau de confiance entre 0 et 100.
@@ -19,11 +15,19 @@ Réponds UNIQUEMENT en JSON valide :
   "urgence": "faible" | "moyen" | "urgent"
 }`;
 
+function getGroqClient() {
+  return new Groq({
+    apiKey: process.env.GROQ_API_KEY,
+  });
+}
+
 export async function analyserSymptomes(
   patient: { nom: string; prenom: string; age: number; sexe: string; region: string },
   symptomes: string[],
   notes: string | null
 ): Promise<{ diagnostic: string; confiance: number; recommandation: string; urgence: string }> {
+  const groq = getGroqClient();
+
   const userMessage = `Patient : ${patient.prenom} ${patient.nom}
 Âge : ${patient.age} ans | Sexe : ${patient.sexe} | Région : ${patient.region}
 Symptômes : ${symptomes.join(", ")}

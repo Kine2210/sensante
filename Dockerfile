@@ -1,26 +1,19 @@
-# 1. Image de base
-FROM node:20-alpine
+FROM --platform=linux/amd64 node:20
 
-# 2. Répertoire de travail
+RUN apt-get update && apt-get install -y openssl libssl-dev
+
 WORKDIR /app
 
-# 3. Copier les fichiers de dépendances
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-# 4. Installer les dépendances
-RUN npm ci
+RUN npm ci --prefer-offline
 
-# 5. Copier le code source
 COPY . .
 
-# 6. Générer le client Prisma
 RUN npx prisma generate
 
-# 7. Compiler Next.js
 RUN npm run build
 
-# 8. Port
 EXPOSE 3000
 
-# 9. Démarrage
 CMD ["npm", "start"]
