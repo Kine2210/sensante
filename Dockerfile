@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:20
+FROM --platform=linux/arm64 node:20
 
 RUN apt-get update && apt-get install -y openssl libssl-dev
 
