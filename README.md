@@ -13,7 +13,7 @@ SénSanté est une application web full-stack de santé communautaire permettant
 - La **gestion des patients** avec leurs informations et leur région au Sénégal
 - La **saisie de consultations** avec sélection de symptômes
 - Le **diagnostic automatique par IA** (Llama 3 via Groq API)
-- La **visualisation des données** via un tableau de bord interactif
+- La **visualisation des données** via un tableau de bord trés interactif.
 
 ---
 
