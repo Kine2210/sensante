@@ -67,6 +67,10 @@ export default function LoginPage() {
           >
             {loading ? "Connexion..." : "Se connecter"}
           </button>
+             <Link href="/reset-password" className="text-sm text-blue-600">
+           Mot de passe oublié ?
+          </Link>
+
         </form>
 
         <p className="text-sm text-gray-500 text-center mt-4">
