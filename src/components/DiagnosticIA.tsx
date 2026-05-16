@@ -49,14 +49,14 @@ export default function DiagnosticIA({ consultationId, diagnosticExistant, confi
       {!resultat ? (
         <button onClick={lancer} disabled={loading}
           className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition disabled:opacity-50 text-sm">
-          {loading ? "Analyse en cours..." : "Lancer le diagnostic IA"}
+          {loading ? "Analyse en cours..." : "🤖 Lancer le diagnostic IA"}
         </button>
       ) : (
-        <div className={`p-4 rounded-lg border-l-4 ${couleurs[resultat.urgence as keyof typeof couleurs] || couleurs.moyen}`}>
+        <div className={`p-4 rounded-lg border-l-4 ${couleurs[resultat.urgence as keyof typeof couleurs] || couleurs.moyen} ${resultat.urgence === "urgent" ? "animate-pulse" : ""}`}>
           <div className="flex justify-between items-center">
             <p className="font-bold text-gray-800">Diagnostic IA</p>
-            <span className={`text-xs px-2 py-1 rounded-full font-bold ${resultat.urgence === "urgent" ? "bg-red-200 text-red-800" : resultat.urgence === "moyen" ? "bg-orange-200 text-orange-800" : "bg-green-200 text-green-800"}`}>
-              {resultat.urgence.toUpperCase()}
+            <span className={`text-xs px-2 py-1 rounded-full font-bold ${resultat.urgence === "urgent" ? "bg-red-200 text-red-800 animate-bounce" : resultat.urgence === "moyen" ? "bg-orange-200 text-orange-800" : "bg-green-200 text-green-800"}`}>
+              {resultat.urgence === "urgent" ? "🚨 URGENT" : resultat.urgence.toUpperCase()}
             </span>
           </div>
           <p className="text-sm text-gray-700 mt-2">{resultat.diagnostic}</p>
@@ -64,10 +64,11 @@ export default function DiagnosticIA({ consultationId, diagnosticExistant, confi
           <div className="mt-2">
             <p className="text-xs text-gray-500">Confiance : {resultat.confiance}%</p>
             <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
-              <div className="bg-orange-500 h-2 rounded-full" style={{ width: `${resultat.confiance}%` }}></div>
+              <div className={`h-2 rounded-full ${resultat.urgence === "urgent" ? "bg-red-500" : resultat.urgence === "moyen" ? "bg-orange-500" : "bg-green-500"}`}
+                style={{ width: `${resultat.confiance}%` }}></div>
             </div>
           </div>
-          <p className="text-xs text-gray-400 italic mt-3">Ceci n'est pas un diagnostic médical. Consultez un professionnel de santé.</p>
+          <p className="text-xs text-gray-400 italic mt-3">⚕️ Ceci n'est pas un diagnostic médical. Consultez un professionnel de santé.</p>
         </div>
       )}
     </div>

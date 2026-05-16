@@ -1,5 +1,4 @@
 // Page d'accueil - assemblée par L'Architecte
-
 import PatientCard from "@/components/PatientCard";
 import ConsultationCard from "@/components/ConsultationCard";
 import AlerteIA from "@/components/AlerteIA";
@@ -9,6 +8,10 @@ import LoginButton from "@/components/LoginButton";
 export default function Home() {
   return (
     <div>
+      <div className="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-lg mb-6">
+        <p className="text-teal-800 font-semibold">👋 Bienvenue sur SénSanté</p>
+        <p className="text-teal-600 text-sm">Assistant de santé communautaire — Groupe 1 — L3 GLSI</p>
+      </div>
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-2xl font-bold text-gray-800">Tableau de bord</h2>
         <LoginButton />
